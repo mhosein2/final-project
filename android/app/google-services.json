@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "908112510334",
+    "project_id": "alimonio",
+    "storage_bucket": "alimonio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908112510334:android:a3dce46c9cbae2ca12072f",
+        "android_client_info": {
+          "package_name": "com.company.alimonio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "908112510334-lg8kdbm4p3c3db981n3pumb9v6lpsbrt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7HGjiXQ36Wt1DHy2U69pu50GATtA98qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "908112510334-lg8kdbm4p3c3db981n3pumb9v6lpsbrt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
