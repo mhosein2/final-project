@@ -6,16 +6,6 @@ import 'package:final_project/screens/signup_screen.dart';
 
 import '../reusable_widgets/reusable_widgets.dart';
 
-void main() {
-  runApp(MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-    title: Text("Fanpage"),
-    centerTitle: true,
-    backgroundColor: Colors.black54,
-  ))));
-}
-
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
@@ -30,7 +20,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          color: Colors.blue,
+          color: Colors.blueGrey,
           child: Padding(
               padding: EdgeInsets.fromLTRB(
                   20, MediaQuery.of(context).size.height * 0.2, 20, 0),

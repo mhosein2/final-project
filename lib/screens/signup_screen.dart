@@ -29,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
         body: Container(
-          color: Colors.blue,
+          color: Colors.blueGrey,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(

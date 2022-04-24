@@ -1,59 +1,29 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
-import 'package:final_project/models/searchresults.dart';
-import 'package:final_project/screens/cravings_search.dart';
-import 'package:final_project/screens/recipes_screen.dart';
+import 'package:final_project/models/productresults.dart';
+import 'package:final_project/screens/craving_screen.dart';
+import 'package:final_project/screens/search.dart';
 import 'package:final_project/screens/signin_screen.dart';
 import 'package:final_project/services/services.dart';
 import 'package:flutter/material.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class ProductSearch extends StatefulWidget {
+  const ProductSearch({Key? key}) : super(key: key);
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<ProductSearch> createState() => _ProductSearchState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _ProductSearchState extends State<ProductSearch> {
   TextEditingController myController = TextEditingController();
-  int currentIndex = 0;
 
-  final List<Widget> _children = [SearchPage(), ProductSearch()];
-
-  _onTap() {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (BuildContext context) => _children[currentIndex]));
-  }
-
-  void tabSelect(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
-
-  final List<String> _diets = [
-    'None',
-    'Gluten Free',
-    'Ketogenic',
-    'Lacto-Vegetarian',
-    'Ovo-Vegetarian',
-    'Vegan',
-    'Pescatarian',
-    'Paleo',
-    'Primal',
-    'Whole30',
-  ];
-
-  String _diet = 'None';
   String _query = '';
 
-  void _searchRecipes() async {
-    Results search =
-        await APIService.instance.listRecipe(diet: _diet, query: _query);
+  void _searchProducts() async {
+    ProductResults search =
+        await APIService.instance.listProduct(query: _query);
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => RecipesScreen(search: search),
+        builder: (_) => ProductScreen(search: search),
       ),
     );
   }
@@ -72,9 +42,9 @@ class _SearchPageState extends State<SearchPage> {
       ),
       autofocus: false,
       onSaved: (value) {},
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
           border: InputBorder.none,
-          hintStyle: const TextStyle(color: Colors.blueGrey)),
+          hintStyle: TextStyle(color: Colors.blueGrey)),
     );
 
     return Scaffold(
@@ -101,7 +71,7 @@ class _SearchPageState extends State<SearchPage> {
                           style: TextStyle(decoration: TextDecoration.none),
                           children: <TextSpan>[
                         TextSpan(
-                            text: 'SEARCH ',
+                            text: 'SATISFY ',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.normal,
@@ -109,48 +79,14 @@ class _SearchPageState extends State<SearchPage> {
                                 fontSize: 25.0,
                                 letterSpacing: 1.5)),
                         TextSpan(
-                            text: 'recipes\n',
+                            text: 'cravings',
                             style: TextStyle(
                                 fontSize: 24.0,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 1.5))
                       ])),
-                  Text(
-                    'Enter a diet',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontStyle: FontStyle.italic, fontSize: 10),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Expanded(
-                            child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            items: _diets.map((String priority) {
-                              return DropdownMenuItem(
-                                value: priority,
-                                child: Text(
-                                  priority,
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 15.0),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                _diet = value.toString();
-                              });
-                            },
-                            value: _diet,
-                          ),
-                        ))
-                      ],
-                    ),
-                  ),
-                  Text('\nEnter a keyword(s)',
+                  const Text('\nEnter a keyword(s)',
                       textAlign: TextAlign.left,
                       style:
                           TextStyle(fontStyle: FontStyle.italic, fontSize: 10)),
@@ -179,7 +115,7 @@ class _SearchPageState extends State<SearchPage> {
                       primary: Colors.white,
                       backgroundColor: Color.fromARGB(255, 255, 146, 22),
                     ),
-                    onPressed: _searchRecipes,
+                    onPressed: _searchProducts,
                   ),
                 ],
               ),
@@ -195,10 +131,7 @@ class _SearchPageState extends State<SearchPage> {
               child: Container(
                 child: Text(
                   'Alimonio',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40,
-                      color: Color.fromARGB(255, 40, 38, 38)),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
                 ),
                 alignment: Alignment.bottomLeft,
               ),
@@ -206,14 +139,8 @@ class _SearchPageState extends State<SearchPage> {
             Card(
               elevation: 5,
               child: ListTile(
-                title: Text(
-                  'Recipes',
-                  style: TextStyle(color: Color.fromARGB(255, 255, 146, 22)),
-                ),
-                trailing: Icon(
-                  Icons.search_outlined,
-                  color: Color.fromARGB(255, 255, 146, 22),
-                ),
+                title: Text('Search'),
+                trailing: Icon(Icons.search_outlined),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SearchPage()));
@@ -223,12 +150,8 @@ class _SearchPageState extends State<SearchPage> {
             Card(
               elevation: 5,
               child: ListTile(
-                title: Text(
-                  'Cravings',
-                  style: TextStyle(color: Color.fromARGB(255, 255, 146, 22)),
-                ),
-                trailing:
-                    Icon(Icons.cake, color: Color.fromARGB(255, 255, 146, 22)),
+                title: Text('Cravings'),
+                trailing: Icon(Icons.cake),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ProductSearch()));
@@ -238,12 +161,8 @@ class _SearchPageState extends State<SearchPage> {
             Card(
               elevation: 5,
               child: ListTile(
-                title: Text(
-                  'Logout',
-                  style: TextStyle(color: Color.fromARGB(255, 255, 146, 22)),
-                ),
-                trailing: Icon(Icons.logout,
-                    color: Color.fromARGB(255, 255, 146, 22)),
+                title: Text('Logout'),
+                trailing: Icon(Icons.logout),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SignInScreen()));

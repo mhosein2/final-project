@@ -1,3 +1,5 @@
+import 'package:final_project/screens/cravings_search.dart';
+import 'package:final_project/screens/search.dart';
 import 'package:final_project/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -19,35 +21,78 @@ class _ClickedScreenState extends State<ClickedScreen> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 40, 38, 38),
         title: Text('Spoonacular'),
-        actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              primary: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SignInScreen()));
-            },
-            child: const Text("Logout"),
-          )
-        ],
       ),
       body: WebView(
         initialUrl: widget.clicked!.spoonacularSourceUrl,
         javascriptMode: JavascriptMode.unrestricted,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.grey,
-        selectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
-        unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search_outlined), label: 'Search'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_box), label: 'Profile'),
-        ],
+      drawer: Drawer(
+        backgroundColor: Color.fromARGB(255, 40, 38, 38),
+        child: ListView(
+          padding: EdgeInsets.symmetric(vertical: 1),
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.blueGrey),
+              child: Container(
+                child: Text(
+                  'Alimonio',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40,
+                      color: Color.fromARGB(255, 40, 38, 38)),
+                ),
+                alignment: Alignment.bottomLeft,
+              ),
+            ),
+            Card(
+              elevation: 5,
+              child: ListTile(
+                title: Text(
+                  'Recipes',
+                  style: TextStyle(color: Color.fromARGB(255, 255, 146, 22)),
+                ),
+                trailing: Icon(
+                  Icons.search_outlined,
+                  color: Color.fromARGB(255, 255, 146, 22),
+                ),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SearchPage()));
+                },
+              ),
+            ),
+            Card(
+              elevation: 5,
+              child: ListTile(
+                title: Text(
+                  'Cravings',
+                  style: TextStyle(color: Color.fromARGB(255, 255, 146, 22)),
+                ),
+                trailing:
+                    Icon(Icons.cake, color: Color.fromARGB(255, 255, 146, 22)),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProductSearch()));
+                },
+              ),
+            ),
+            Card(
+              elevation: 5,
+              child: ListTile(
+                title: Text(
+                  'Logout',
+                  style: TextStyle(color: Color.fromARGB(255, 255, 146, 22)),
+                ),
+                trailing: Icon(Icons.logout,
+                    color: Color.fromARGB(255, 255, 146, 22)),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignInScreen()));
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

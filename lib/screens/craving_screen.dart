@@ -1,85 +1,71 @@
-import 'package:final_project/models/recipe_model.dart';
+import 'package:final_project/models/productresults.dart';
 import 'package:final_project/models/search_models.dart';
-import 'package:final_project/models/searchresults.dart';
-import 'package:final_project/screens/clicked_recipe.dart';
 import 'package:final_project/screens/cravings_search.dart';
 import 'package:final_project/screens/search.dart';
 import 'package:final_project/screens/signin_screen.dart';
-import 'package:final_project/services/services.dart';
 import 'package:flutter/material.dart';
 
-class RecipesScreen extends StatefulWidget {
-  final Results search;
+class ProductScreen extends StatefulWidget {
+  final ProductResults search;
 
-  RecipesScreen({required this.search});
+  const ProductScreen({Key? key, required this.search}) : super(key: key);
 
   @override
-  State<RecipesScreen> createState() => _RecipesScreenState();
+  State<ProductScreen> createState() => _ProductScreenState();
 }
 
-class _RecipesScreenState extends State<RecipesScreen> {
-  _buildRecipeCard(SearchRecipe recipe, int index) {
-    return GestureDetector(
-      onTap: () async {
-        Recipe? clicked =
-            await APIService.instance.fetchRecipe(recipe.id.toString());
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => ClickedScreen(clicked: clicked),
+// This is when I started to try to change the cravings results to a list instead of a box
+class _ProductScreenState extends State<ProductScreen> {
+  _buildProductCard(SearchRecipe recipe, int index) {
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        Container(
+          height: 220.0,
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 10,
           ),
-        );
-      },
-      child: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          Container(
-            height: 220.0,
-            width: double.infinity,
-            margin: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15.0,
+            vertical: 10.0,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            image: DecorationImage(
+              image: NetworkImage(recipe.imageUrl),
+              fit: BoxFit.cover,
             ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15.0,
-              vertical: 10.0,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              image: DecorationImage(
-                image: NetworkImage(recipe.imageUrl),
-                fit: BoxFit.cover,
+            borderRadius: BorderRadius.circular(15.0),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black,
+                offset: Offset(0, 2),
+                blurRadius: 6.0,
               ),
-              borderRadius: BorderRadius.circular(15.0),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black,
-                  offset: Offset(0, 2),
-                  blurRadius: 6.0,
-                ),
-              ],
-            ),
+            ],
           ),
-          Container(
-            margin: EdgeInsets.all(30),
-            padding: EdgeInsets.all(5),
-            color: Colors.transparent,
-            child: Column(
-              children: <Widget>[
-                Text(
-                  recipe.title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.0,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+        ),
+        Container(
+          margin: EdgeInsets.all(30),
+          padding: EdgeInsets.all(5),
+          color: Colors.transparent,
+          child: Column(
+            children: <Widget>[
+              Text(
+                recipe.title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24.0,
+                ),
+                overflow: TextOverflow.ellipsis,
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 
@@ -89,12 +75,25 @@ class _RecipesScreenState extends State<RecipesScreen> {
       backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 40, 38, 38),
+        title: Text('Recipes'),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              primary: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SignInScreen()));
+            },
+            child: const Text("Logout"),
+          )
+        ],
       ),
       body: ListView.builder(
-        itemCount: widget.search.results.length,
+        itemCount: widget.search.prodResults.length,
         itemBuilder: (BuildContext context, int index) {
-          SearchRecipe recipe = widget.search.results[index];
-          return _buildRecipeCard(recipe, index - 1);
+          SearchRecipe recipe = widget.search.prodResults[index];
+          return _buildProductCard(recipe, index - 1);
         },
       ),
       drawer: Drawer(
