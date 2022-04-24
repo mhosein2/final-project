@@ -2,6 +2,7 @@
 
 import 'package:final_project/models/searchresults.dart';
 import 'package:final_project/screens/cravings_search.dart';
+import 'package:final_project/screens/homepage.dart';
 import 'package:final_project/screens/recipes_screen.dart';
 import 'package:final_project/screens/signin_screen.dart';
 import 'package:final_project/services/services.dart';
@@ -246,7 +247,7 @@ class _SearchPageState extends State<SearchPage> {
                     color: Color.fromARGB(255, 255, 146, 22)),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignInScreen()));
+                      MaterialPageRoute(builder: (context) => HomePage()));
                 },
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:final_project/models/productresults.dart';
 import 'package:final_project/models/search_models.dart';
 import 'package:final_project/screens/cravings_search.dart';
+import 'package:final_project/screens/homepage.dart';
 import 'package:final_project/screens/search.dart';
 import 'package:final_project/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +126,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     color: Color.fromARGB(255, 255, 146, 22)),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignInScreen()));
+                      MaterialPageRoute(builder: (context) => HomePage()));
                 },
               ),
             ),

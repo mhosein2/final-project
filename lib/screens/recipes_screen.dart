@@ -3,6 +3,7 @@ import 'package:final_project/models/search_models.dart';
 import 'package:final_project/models/searchresults.dart';
 import 'package:final_project/screens/clicked_recipe.dart';
 import 'package:final_project/screens/cravings_search.dart';
+import 'package:final_project/screens/homepage.dart';
 import 'package:final_project/screens/search.dart';
 import 'package:final_project/screens/signin_screen.dart';
 import 'package:final_project/services/services.dart';
@@ -158,7 +159,7 @@ class _RecipesScreenState extends State<RecipesScreen> {
                     color: Color.fromARGB(255, 255, 146, 22)),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignInScreen()));
+                      MaterialPageRoute(builder: (context) => HomePage()));
                 },
               ),
             ),
