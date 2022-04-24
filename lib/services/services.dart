@@ -7,18 +7,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/recipe_model.dart';
 import '../models/search_models.dart';
 
-Future main() async {
-  await dotenv.load(fileName: ".env");
-}
-
 class APIService {
   APIService._instantiate();
   static final APIService instance = APIService._instantiate();
 
   final String BASEURL = "api.spoonacular.com";
-  String? API_KEY = dotenv.env['API_KEY'];
+  String API_KEY = dotenv.get("API_KEY", fallback: "");
 
-  Future<Results> listRecipe({String? diet, required String query}) async {
+  Future<Results> listRecipe({String? diet, String? query}) async {
     if (diet == 'None') diet = '';
     Map<String, String?> parameters = {
       'diet': diet,
@@ -37,8 +33,8 @@ class APIService {
 
       Map<String, dynamic> data = json.decode(response.body);
 
-      Results searchRecipe = Results.fromMap(data);
-      return searchRecipe;
+      Results search_recipe = Results.fromMap(data);
+      return search_recipe;
     } catch (err) {
       throw err.toString();
     }

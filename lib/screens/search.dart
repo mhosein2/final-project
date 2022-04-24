@@ -29,7 +29,7 @@ class _SearchPageState extends State<SearchPage> {
   ];
 
   String _diet = 'None';
-  String _query = 'pasta';
+  String _query = '';
 
   void _searchRecipes() async {
     Results search =
@@ -37,7 +37,7 @@ class _SearchPageState extends State<SearchPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => RecipesScreen(search: search),
+        builder: (_) => RecipesScreen(search: search),
       ),
     );
   }

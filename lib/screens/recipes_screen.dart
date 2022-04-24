@@ -88,7 +88,7 @@ class _RecipesScreenState extends State<RecipesScreen> {
       body: ListView.builder(
         itemCount: 1 + widget.search.results.length,
         itemBuilder: (BuildContext context, int index) {
-          SearchRecipe recipe = widget.search.results[index - 1];
+          SearchRecipe recipe = widget.search.results[index];
           return _buildRecipeCard(recipe, index - 1);
         },
       ),
