@@ -6,7 +6,7 @@ import '../models/recipe_model.dart';
 class ClickedScreen extends StatefulWidget {
   final Recipe? clicked;
 
-  ClickedScreen({required this.clicked});
+  const ClickedScreen({Key? key, required this.clicked}) : super(key: key);
 
   @override
   State<ClickedScreen> createState() => _ClickedScreenState();
