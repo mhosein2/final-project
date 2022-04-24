@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:final_project/models/results.dart';
+import 'package:final_project/models/searchresults.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -33,8 +33,8 @@ class APIService {
 
       Map<String, dynamic> data = json.decode(response.body);
 
-      Results search_recipe = Results.fromMap(data);
-      return search_recipe;
+      Results searchRecipe = Results.fromMap(data);
+      return searchRecipe;
     } catch (err) {
       throw err.toString();
     }

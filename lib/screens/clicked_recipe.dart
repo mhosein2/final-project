@@ -18,7 +18,7 @@ class _ClickedScreenState extends State<ClickedScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 40, 38, 38),
-        title: Text('Result'),
+        title: Text('Spoonacular'),
         actions: <Widget>[
           TextButton(
             style: TextButton.styleFrom(
@@ -35,6 +35,19 @@ class _ClickedScreenState extends State<ClickedScreen> {
       body: WebView(
         initialUrl: widget.clicked!.spoonacularSourceUrl,
         javascriptMode: JavascriptMode.unrestricted,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.grey,
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
+        unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search_outlined), label: 'Search'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box), label: 'Profile'),
+        ],
       ),
     );
   }

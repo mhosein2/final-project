@@ -1,4 +1,4 @@
-import 'package:final_project/models/results.dart';
+import 'package:final_project/models/searchresults.dart';
 import 'package:final_project/screens/recipes_screen.dart';
 import 'package:final_project/screens/signin_screen.dart';
 import 'package:final_project/services/services.dart';
@@ -166,6 +166,19 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
           )),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.grey,
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
+        unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search_outlined), label: 'Search'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box), label: 'Profile'),
+        ],
+      ),
     );
   }
 }

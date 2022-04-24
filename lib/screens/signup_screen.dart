@@ -1,7 +1,6 @@
 import 'package:final_project/screens/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/screens/homepage.dart';
 
 import '../reusable_widgets/reusable_widgets.dart';
 import 'database.dart';
@@ -24,7 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         appBar: AppBar(
           backgroundColor: Colors.black26,
           elevation: 0,
-          title: Text(
+          title: const Text(
             "Sign Up",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
@@ -32,7 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         body: Container(
           color: Colors.blue,
           child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
                 const SizedBox(

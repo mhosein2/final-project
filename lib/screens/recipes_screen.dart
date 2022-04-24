@@ -1,6 +1,6 @@
 import 'package:final_project/models/recipe_model.dart';
 import 'package:final_project/models/search_models.dart';
-import 'package:final_project/models/results.dart';
+import 'package:final_project/models/searchresults.dart';
 import 'package:final_project/screens/clicked_recipe.dart';
 import 'package:final_project/screens/signin_screen.dart';
 import 'package:final_project/services/services.dart';
