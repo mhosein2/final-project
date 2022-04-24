@@ -105,7 +105,7 @@ class _ProductSearchState extends State<ProductSearch> {
                   ),
                   TextButton(
                     child: const Text(
-                      'Search Recipes',
+                      'Search Recommendations',
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -131,7 +131,10 @@ class _ProductSearchState extends State<ProductSearch> {
               child: Container(
                 child: Text(
                   'Alimonio',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40,
+                      color: Color.fromARGB(255, 40, 38, 38)),
                 ),
                 alignment: Alignment.bottomLeft,
               ),
@@ -139,8 +142,14 @@ class _ProductSearchState extends State<ProductSearch> {
             Card(
               elevation: 5,
               child: ListTile(
-                title: Text('Search'),
-                trailing: Icon(Icons.search_outlined),
+                title: Text(
+                  'Recipes',
+                  style: TextStyle(color: Color.fromARGB(255, 255, 146, 22)),
+                ),
+                trailing: Icon(
+                  Icons.search_outlined,
+                  color: Color.fromARGB(255, 255, 146, 22),
+                ),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SearchPage()));
@@ -150,8 +159,12 @@ class _ProductSearchState extends State<ProductSearch> {
             Card(
               elevation: 5,
               child: ListTile(
-                title: Text('Cravings'),
-                trailing: Icon(Icons.cake),
+                title: Text(
+                  'Cravings',
+                  style: TextStyle(color: Color.fromARGB(255, 255, 146, 22)),
+                ),
+                trailing:
+                    Icon(Icons.cake, color: Color.fromARGB(255, 255, 146, 22)),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ProductSearch()));
@@ -161,8 +174,12 @@ class _ProductSearchState extends State<ProductSearch> {
             Card(
               elevation: 5,
               child: ListTile(
-                title: Text('Logout'),
-                trailing: Icon(Icons.logout),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(color: Color.fromARGB(255, 255, 146, 22)),
+                ),
+                trailing: Icon(Icons.logout,
+                    color: Color.fromARGB(255, 255, 146, 22)),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SignInScreen()));

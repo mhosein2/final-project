@@ -20,51 +20,31 @@ class _ProductScreenState extends State<ProductScreen> {
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        Container(
-          height: 220.0,
-          width: double.infinity,
-          margin: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 10,
-          ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15.0,
-            vertical: 10.0,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(
-              image: NetworkImage(recipe.imageUrl),
-              fit: BoxFit.cover,
-            ),
-            borderRadius: BorderRadius.circular(15.0),
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black,
-                offset: Offset(0, 2),
-                blurRadius: 6.0,
-              ),
-            ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.all(30),
-          padding: EdgeInsets.all(5),
-          color: Colors.transparent,
-          child: Column(
-            children: <Widget>[
-              Text(
-                recipe.title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24.0,
+        SizedBox(
+          height: 55,
+          child: ListView(
+            padding: EdgeInsets.symmetric(vertical: 1),
+            children: [
+              Card(
+                elevation: 2,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(recipe.imageUrl),
+                  ),
+                  title: Text(
+                    recipe.title,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24.0,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-                overflow: TextOverflow.ellipsis,
               )
             ],
           ),
-        )
+        ),
       ],
     );
   }
@@ -75,19 +55,7 @@ class _ProductScreenState extends State<ProductScreen> {
       backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 40, 38, 38),
-        title: Text('Recipes'),
-        actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              primary: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SignInScreen()));
-            },
-            child: const Text("Logout"),
-          )
-        ],
+        title: const Text('Recommendations'),
       ),
       body: ListView.builder(
         itemCount: widget.search.prodResults.length,

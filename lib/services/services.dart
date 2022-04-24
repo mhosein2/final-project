@@ -42,7 +42,7 @@ class APIService {
 
   Future<ProductResults> listProduct({required String? query}) async {
     Map<String, String?> parameters = {
-      'number': '5',
+      'number': '11',
       'query': query,
       'apiKey': API_KEY,
     };

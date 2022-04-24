@@ -9,3 +9,15 @@ Future<void> setupUser(String userName) async {
   users.add({'username': userName, 'uid': uid, 'role': userRole});
   return;
 }
+
+Future<void> addFav(String title) async {
+  CollectionReference users =
+      FirebaseFirestore.instance.collection('favorites');
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  String uid = _auth.currentUser!.uid.toString();
+  users.add({
+    'recipe': title,
+    'uid': uid,
+  });
+  return;
+}
