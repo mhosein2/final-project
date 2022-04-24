@@ -9,7 +9,7 @@ class SearchRecipe {
     return SearchRecipe(
       id: map['id'],
       title: map['title'],
-      imageUrl: 'https://spoonacular.com/recipeImages/' + map['image'],
+      imageUrl: map['image'],
     );
   }
 }

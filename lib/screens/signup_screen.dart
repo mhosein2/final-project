@@ -1,3 +1,4 @@
+import 'package:final_project/screens/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/homepage.dart';
@@ -60,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       .then((value) {
                     setupUser(_usernameTextController.text);
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                        MaterialPageRoute(builder: (context) => SearchPage()));
                   }).onError((error, stackTrace) {
                     Text("Error ${error.toString()}");
                   });

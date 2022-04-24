@@ -1,9 +1,9 @@
 import 'package:final_project/models/results.dart';
 import 'package:final_project/screens/recipes_screen.dart';
+import 'package:final_project/screens/signin_screen.dart';
 import 'package:final_project/services/services.dart';
 import 'package:flutter/material.dart';
-
-import '../models/search_models.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   TextEditingController myController = TextEditingController();
 
-  List<String> _diets = [
+  final List<String> _diets = [
     'None',
     'Gluten Free',
     'Ketogenic',
@@ -49,27 +49,43 @@ class _SearchPageState extends State<SearchPage> {
         _query = (myController.text);
       }),
       controller: myController,
-      style: TextStyle(
-        decorationColor: Colors.white,
-        color: Colors.white,
+      style: const TextStyle(
+        decorationColor: Colors.blueGrey,
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
       ),
       autofocus: false,
       onSaved: (value) {},
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20, 5, 20, 10),
+          contentPadding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-          hintStyle: TextStyle(color: Colors.white)),
+          hintStyle: const TextStyle(color: Colors.blueGrey)),
     );
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 40, 38, 38),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              primary: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SignInScreen()));
+            },
+            child: const Text("Logout"),
+          )
+        ],
+      ),
       body: Container(
-          decoration: BoxDecoration(color: Colors.blueGrey),
+          decoration: const BoxDecoration(color: Colors.blueGrey),
           child: Center(
             child: Container(
-              margin: EdgeInsets.symmetric(
+              margin: const EdgeInsets.symmetric(
                 horizontal: 30.0,
               ),
-              padding: EdgeInsets.symmetric(horizontal: 30.0),
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
               height: MediaQuery.of(context).size.height * 0.55,
               decoration: BoxDecoration(
                   color: Colors.white.withOpacity(.9),
@@ -77,16 +93,28 @@ class _SearchPageState extends State<SearchPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    'Alimonio',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
+                  RichText(
+                      text: const TextSpan(
+                          style: TextStyle(decoration: TextDecoration.none),
+                          children: <TextSpan>[
+                        TextSpan(
+                            text: 'ALI',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.normal,
+                                color: Colors.black,
+                                fontSize: 25.0,
+                                letterSpacing: 1.5)),
+                        TextSpan(
+                            text: 'monio',
+                            style: TextStyle(
+                                fontSize: 24.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.5))
+                      ])),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -98,7 +126,7 @@ class _SearchPageState extends State<SearchPage> {
                                 value: priority,
                                 child: Text(
                                   priority,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.black, fontSize: 15.0),
                                 ),
                               );
@@ -117,16 +145,20 @@ class _SearchPageState extends State<SearchPage> {
                   Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                     queryField,
                   ]),
-                  SizedBox(
+                  const SizedBox(
                     height: 30.0,
                   ),
                   TextButton(
-                    child: Text(
+                    child: const Text(
                       'Search Recipes',
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 20.0),
+                    ),
+                    style: TextButton.styleFrom(
+                      primary: Colors.white,
+                      backgroundColor: Colors.blueGrey,
                     ),
                     onPressed: _searchRecipes,
                   ),

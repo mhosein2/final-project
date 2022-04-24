@@ -2,6 +2,7 @@ import 'package:final_project/models/recipe_model.dart';
 import 'package:final_project/models/search_models.dart';
 import 'package:final_project/models/results.dart';
 import 'package:final_project/screens/clicked_recipe.dart';
+import 'package:final_project/screens/signin_screen.dart';
 import 'package:final_project/services/services.dart';
 import 'package:flutter/material.dart';
 
@@ -58,15 +59,16 @@ class _RecipesScreenState extends State<RecipesScreen> {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(60),
-            padding: EdgeInsets.all(10),
-            color: Colors.white,
+            margin: EdgeInsets.all(30),
+            padding: EdgeInsets.all(5),
+            color: Colors.transparent,
             child: Column(
               children: <Widget>[
                 Text(
                   recipe.title,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                     fontSize: 24.0,
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -82,8 +84,22 @@ class _RecipesScreenState extends State<RecipesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 40, 38, 38),
         title: Text('Recipes'),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              primary: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SignInScreen()));
+            },
+            child: const Text("Logout"),
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: 1 + widget.search.results.length,
@@ -91,6 +107,19 @@ class _RecipesScreenState extends State<RecipesScreen> {
           SearchRecipe recipe = widget.search.results[index];
           return _buildRecipeCard(recipe, index - 1);
         },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.grey,
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
+        unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search_outlined), label: 'Search'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box), label: 'Profile'),
+        ],
       ),
     );
   }
