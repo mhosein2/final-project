@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:908112510334:android:a3dce46c9cbae2ca12072f",
+        "mobilesdk_app_id": "1:908112510334:android:aef2230bfcb46f8d12072f",
         "android_client_info": {
-          "package_name": "com.company.alimonio"
+          "package_name": "com.example.final_project"
         }
       },
       "oauth_client": [
